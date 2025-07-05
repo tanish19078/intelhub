@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intel Hub - Advanced Intelligence Platform</title>
+    <title>Intel Hub - Information Defense & Analysis</title>
     <style>
         * {
             margin: 0;
@@ -11,85 +11,34 @@
             box-sizing: border-box;
         }
         
-        :root {
-            --primary-cyan: #00d4ff;
-            --primary-blue: #0099cc;
-            --accent-green: #00ff88;
-            --danger-red: #ff3366;
-            --warning-orange: #ff9900;
-            --dark-bg: #0a0a0f;
-            --card-bg: rgba(15, 15, 35, 0.85);
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --border-glow: rgba(0, 212, 255, 0.3);
-        }
-        
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
             color: #e4e6ea;
             background: 
-                radial-gradient(circle at 20% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 60%, rgba(255, 51, 102, 0.05) 0%, transparent 50%),
-                linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+                linear-gradient(135deg, rgba(15, 15, 35, 0.9) 0%, rgba(26, 26, 46, 0.9) 50%, rgba(22, 33, 62, 0.9) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="hexagon" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><polygon points="50,5 85,25 85,75 50,95 15,75 15,25" fill="none" stroke="rgba(0,212,255,0.1)" stroke-width="1"/></pattern></defs><rect width="1000" height="1000" fill="url(%23hexagon)"/></svg>');
+            background-size: cover, 200px 200px;
             background-attachment: fixed;
             min-height: 100vh;
-            overflow-x: hidden;
-        }
-        
-        /* Animated background particles */
-        .bg-particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: var(--primary-cyan);
-            border-radius: 50%;
-            animation: float-particle 20s infinite linear;
-            opacity: 0.6;
-        }
-        
-        @keyframes float-particle {
-            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
         }
         
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-            position: relative;
-            z-index: 10;
         }
         
-        /* Header with glassmorphism */
         header {
-            background: rgba(10, 10, 15, 0.9);
+            background: rgba(15, 15, 35, 0.9);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-glow);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        header.scrolled {
-            background: rgba(10, 10, 15, 0.95);
-            box-shadow: 0 8px 32px rgba(0, 212, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
         }
         
         .header-content {
@@ -101,27 +50,28 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--primary-cyan);
+            color: #00d4ff;
             text-decoration: none;
             letter-spacing: -0.5px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: transform 0.3s ease;
         }
         
-        .logo:hover {
-            transform: scale(1.05);
+        .logo svg {
+            vertical-align: middle;
+            filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5));
         }
         
-        .logo-icon {
-            filter: drop-shadow(0 0 10px var(--primary-cyan));
-            animation: pulse-glow 2s ease-in-out infinite;
+        .hero-logo {
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
         }
         
-        @keyframes pulse-glow {
-            0%, 100% { filter: drop-shadow(0 0 10px var(--primary-cyan)); }
-            50% { filter: drop-shadow(0 0 20px var(--primary-cyan)); }
+        .logo-section {
+            margin-bottom: 1rem;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
         
         nav ul {
@@ -134,43 +84,11 @@
             color: white;
             text-decoration: none;
             font-weight: 500;
-            position: relative;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            cursor: pointer;
+            transition: color 0.3s;
         }
         
         nav a:hover {
-            color: var(--primary-cyan);
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-        }
-        
-        nav a::before {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: var(--primary-cyan);
-            transform: translateX(-50%);
-            transition: width 0.3s ease;
-        }
-        
-        nav a:hover::before {
-            width: 80%;
-        }
-        
-        /* Mobile menu */
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
+            color: #00d4ff;
         }
         
         main {
@@ -178,151 +96,59 @@
             padding: 2rem 0;
         }
         
-        /* Hero section with 3D effects */
         .hero {
             text-align: center;
-            padding: 6rem 0;
+            padding: 4rem 0;
             color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                linear-gradient(45deg, transparent 49%, rgba(0, 212, 255, 0.1) 50%, transparent 51%),
-                linear-gradient(-45deg, transparent 49%, rgba(0, 212, 255, 0.1) 50%, transparent 51%);
-            background-size: 100px 100px;
-            animation: grid-move 20s linear infinite;
-            opacity: 0.3;
-        }
-        
-        @keyframes grid-move {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(100px, 100px); }
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 5;
-        }
-        
-        .hero-logo {
-            margin-bottom: 2rem;
-            animation: float-3d 4s ease-in-out infinite;
-            filter: drop-shadow(0 0 30px var(--primary-cyan));
-        }
-        
-        @keyframes float-3d {
-            0%, 100% { transform: translateY(0px) rotateX(0deg); }
-            50% { transform: translateY(-20px) rotateX(5deg); }
         }
         
         .hero h1 {
-            font-size: 4rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--primary-cyan), white, var(--accent-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
-            animation: text-glow 3s ease-in-out infinite;
-        }
-        
-        @keyframes text-glow {
-            0%, 100% { text-shadow: 0 0 30px rgba(0, 212, 255, 0.5); }
-            50% { text-shadow: 0 0 50px rgba(0, 212, 255, 0.8); }
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         
         .hero p {
-            font-size: 1.4rem;
-            margin-bottom: 3rem;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
             opacity: 0.9;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
         }
         
         .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: linear-gradient(45deg, var(--primary-cyan), var(--primary-blue));
+            display: inline-block;
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
             color: white;
-            padding: 15px 35px;
+            padding: 12px 30px;
             text-decoration: none;
-            border-radius: 30px;
+            border-radius: 25px;
             font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(0, 212, 255, 0.5);
-        }
-        
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .cta-button:hover::before {
-            left: 100%;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
         }
         
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(0, 212, 255, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.5);
         }
         
-        .btn-secondary {
-            background: linear-gradient(45deg, transparent, rgba(0, 212, 255, 0.1));
-            border: 2px solid var(--primary-cyan);
-            color: var(--primary-cyan);
-        }
-        
-        .btn-secondary:hover {
-            background: linear-gradient(45deg, var(--primary-cyan), var(--primary-blue));
-            color: white;
-        }
-        
-        /* Advanced feature cards */
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin: 6rem 0;
+            margin: 4rem 0;
         }
         
         .feature-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border-glow);
-            border-radius: 20px;
-            padding: 2.5rem;
+            background: rgba(15, 15, 35, 0.6);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
             text-align: center;
             color: white;
-            transition: all 0.4s ease;
+            transition: transform 0.3s, border-color 0.3s;
             position: relative;
             overflow: hidden;
-            cursor: pointer;
         }
         
         .feature-card::before {
@@ -333,349 +159,81 @@
             right: 0;
             bottom: 0;
             background: 
-                radial-gradient(circle at 30% 30%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 70% 70%, rgba(0, 255, 136, 0.1) 0%, transparent 50%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        
-        .feature-card:hover::before {
-            opacity: 1;
+                radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
         }
         
         .feature-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: var(--primary-cyan);
-            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.5);
         }
         
         .feature-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            filter: drop-shadow(0 0 10px currentColor);
-            animation: icon-bounce 2s ease-in-out infinite;
-        }
-        
-        @keyframes icon-bounce {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-5px); }
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
         
         .feature-card h3 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: var(--primary-cyan);
         }
         
-        .feature-card p {
-            line-height: 1.6;
-            opacity: 0.9;
-        }
-        
-        /* Interactive dashboard section */
-        .dashboard-section {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border-glow);
-            border-radius: 20px;
-            padding: 3rem;
-            margin: 4rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .dashboard-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-        
-        .dashboard-header h2 {
-            color: var(--primary-cyan);
-            font-size: 2.5rem;
-            margin: 0;
-        }
-        
-        .status-indicators {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .status-indicator {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-        }
-        
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            animation: pulse-dot 2s infinite;
-        }
-        
-        .status-dot.active { background: var(--accent-green); }
-        .status-dot.warning { background: var(--warning-orange); }
-        .status-dot.danger { background: var(--danger-red); }
-        
-        @keyframes pulse-dot {
-            0% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-        
-        /* Live metrics */
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-        
-        .metric-card {
-            background: var(--glass-bg);
+        .twitter-section {
+            background: rgba(15, 15, 35, 0.6);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(0, 212, 255, 0.2);
             border-radius: 15px;
+            padding: 3rem;
+            margin: 3rem 0;
+            text-align: center;
+            color: white;
+        }
+        
+        .twitter-handle {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00d4ff;
+            margin: 1rem 0;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .stat-card {
+            background: rgba(15, 15, 35, 0.6);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 10px;
             padding: 1.5rem;
             text-align: center;
             color: white;
-            transition: all 0.3s ease;
-            cursor: pointer;
         }
         
-        .metric-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-cyan);
-            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.2);
-        }
-        
-        .metric-number {
+        .stat-number {
             font-size: 2.5rem;
             font-weight: bold;
-            color: var(--primary-cyan);
-            margin-bottom: 0.5rem;
-            text-shadow: 0 0 10px var(--primary-cyan);
-            animation: number-glow 3s ease-in-out infinite;
+            color: #00d4ff;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
         }
         
-        @keyframes number-glow {
-            0%, 100% { text-shadow: 0 0 10px var(--primary-cyan); }
-            50% { text-shadow: 0 0 20px var(--primary-cyan); }
-        }
-        
-        .metric-label {
+        .stat-label {
             font-size: 0.9rem;
             opacity: 0.8;
+            margin-top: 0.5rem;
         }
         
-        .metric-change {
-            font-size: 0.8rem;
-            margin-top: 0.25rem;
-            font-weight: bold;
-        }
-        
-        .metric-change.positive { color: var(--accent-green); }
-        .metric-change.negative { color: var(--danger-red); }
-        
-        /* Interactive buttons */
-        .control-panel {
-            display: flex;
-            gap: 1rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-        
-        .control-btn {
-            padding: 0.75rem 1.5rem;
-            border: 2px solid var(--primary-cyan);
-            background: transparent;
-            color: var(--primary-cyan);
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .control-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .control-btn:hover::before {
-            left: 100%;
-        }
-        
-        .control-btn:hover {
-            background: var(--primary-cyan);
-            color: var(--dark-bg);
-            transform: translateY(-2px);
-        }
-        
-        .control-btn.active {
-            background: var(--primary-cyan);
-            color: var(--dark-bg);
-        }
-        
-        /* Modal system */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 2000;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: var(--card-bg);
-            border: 1px solid var(--border-glow);
-            border-radius: 20px;
-            padding: 2rem;
-            max-width: 500px;
-            width: 90%;
-            animation: slideIn 0.3s ease;
-        }
-        
-        @keyframes slideIn {
-            from { transform: translate(-50%, -60%); opacity: 0; }
-            to { transform: translate(-50%, -50%); opacity: 1; }
-        }
-        
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        
-        .modal-title {
-            color: var(--primary-cyan);
-            font-size: 1.5rem;
-            margin: 0;
-        }
-        
-        .close-modal {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        
-        .close-modal:hover {
-            color: var(--primary-cyan);
-        }
-        
-        /* Terminal-style output */
-        .terminal {
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid var(--primary-cyan);
-            border-radius: 10px;
-            padding: 1rem;
-            font-family: 'Courier New', monospace;
-            color: var(--accent-green);
-            margin: 1rem 0;
-            height: 200px;
-            overflow-y: auto;
-            font-size: 0.9rem;
-        }
-        
-        .terminal-line {
-            margin: 0.25rem 0;
-            animation: typewriter 1s ease-in-out;
-        }
-        
-        @keyframes typewriter {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-        
-        .terminal-prompt {
-            color: var(--primary-cyan);
-            font-weight: bold;
-        }
-        
-        /* Progress bars */
-        .progress-container {
-            margin: 1rem 0;
-        }
-        
-        .progress-label {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
-        
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: rgba(0, 212, 255, 0.2);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-cyan), var(--accent-green));
-            transition: width 0.3s ease;
-            position: relative;
-        }
-        
-        .progress-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: progress-shine 2s infinite;
-        }
-        
-        @keyframes progress-shine {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-        
-        /* Footer */
         footer {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.3);
             color: white;
             text-align: center;
-            padding: 3rem 0;
-            margin-top: 6rem;
-            border-top: 1px solid var(--border-glow);
+            padding: 2rem 0;
+            margin-top: 4rem;
         }
         
         .social-links {
@@ -686,100 +244,110 @@
         }
         
         .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            background: var(--glass-bg);
-            border: 1px solid var(--border-glow);
-            border-radius: 50%;
             color: white;
             font-size: 1.5rem;
             text-decoration: none;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            transition: color 0.3s;
         }
         
         .social-link:hover {
-            background: var(--primary-cyan);
-            color: var(--dark-bg);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
+            color: #00d4ff;
         }
         
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .mobile-menu-toggle {
-                display: block;
+        .live-feed-container {
+            margin-top: 2rem;
+            background: rgba(15, 15, 35, 0.8);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+        
+        .feed-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .feed-header h3 {
+            margin: 0;
+            color: #00d4ff;
+        }
+        
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #00ff88;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #00ff88;
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+        
+        @keyframes pulse-dot {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+        
+        .x-embed {
+            margin-top: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+        
+        .twitter-timeline {
+            border-radius: 10px !important;
+        }
+        
+        /* Military grid overlay */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(90deg, rgba(0, 212, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(rgba(0, 212, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+        }
+        
+        .hero {
+            position: relative;
+        }
+            .hero h1 {
+                font-size: 2rem;
             }
             
             nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--card-bg);
-                flex-direction: column;
-                padding: 1rem;
-                border-radius: 0 0 20px 20px;
-                border: 1px solid var(--border-glow);
-                backdrop-filter: blur(20px);
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .features {
-                grid-template-columns: 1fr;
-            }
-            
-            .dashboard-header {
                 flex-direction: column;
                 gap: 1rem;
             }
             
-            .control-panel {
-                justify-content: center;
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
             }
-        }
-        
-        /* Loading animations */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(0, 212, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: var(--primary-cyan);
-            animation: spin 1s ease-in-out infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <!-- Animated background particles -->
-    <div class="bg-particles" id="particles"></div>
-
-    <header id="header">
+    <header>
         <div class="container">
             <div class="header-content">
                 <a href="#" class="logo">
-                    <svg width="40" height="40" viewBox="0 0 400 400" class="logo-icon">
+                    <svg width="40" height="40" viewBox="0 0 400 400" style="margin-right: 12px;">
                         <defs>
                             <filter id="glow">
                                 <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
@@ -789,509 +357,30 @@
                                 </feMerge>
                             </filter>
                         </defs>
+                        <!-- Satellite dishes -->
                         <rect x="120" y="120" width="60" height="60" rx="8" fill="#00d4ff" transform="rotate(-15 150 150)" filter="url(#glow)"/>
                         <rect x="200" y="80" width="80" height="80" rx="10" fill="#ffffff" transform="rotate(15 240 120)" filter="url(#glow)"/>
                         <rect x="80" y="200" width="50" height="50" rx="6" fill="#00d4ff" transform="rotate(30 105 225)" filter="url(#glow)"/>
                         <rect x="240" y="220" width="70" height="70" rx="8" fill="#ffffff" transform="rotate(-20 275 255)" filter="url(#glow)"/>
+                        
+                        <!-- Signal waves -->
                         <path d="M 180 140 Q 220 120 250 140" stroke="#00d4ff" stroke-width="3" fill="none" opacity="0.8"/>
                         <path d="M 170 160 Q 210 140 240 160" stroke="#00d4ff" stroke-width="2" fill="none" opacity="0.6"/>
                         <path d="M 160 180 Q 200 160 230 180" stroke="#00d4ff" stroke-width="2" fill="none" opacity="0.4"/>
+                        
+                        <!-- Additional signal waves -->
                         <path d="M 140 120 Q 180 100 210 120" stroke="#ffffff" stroke-width="2" fill="none" opacity="0.6"/>
-                        <path d="M 190 200 Q 230 180 260 200" stroke="#ffffff" stroke-width="3" fill="none" opacity="0.5"/>
-                    </svg>
-                    <h1>Intel Hub</h1>
-                    <p>Next-generation intelligence platform • Real-time threat analysis • Advanced cyber defense operations</p>
-                    <div class="hero-buttons">
-                        <a href="#dashboard" class="cta-button" onclick="scrollToSection('dashboard')">
-                            🚀 Launch Dashboard
-                        </a>
-                        <a href="#analysis" class="cta-button btn-secondary" onclick="scrollToSection('analysis')">
-                            📊 View Analysis
-                        </a>
-                        <a href="#" class="cta-button" onclick="openModal('terminal')">
-                            💻 Access Terminal
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="container" id="analysis">
-            <div class="features">
-                <div class="feature-card" onclick="showFeatureDetails('ai-analysis')">
-                    <div class="feature-icon">🤖</div>
-                    <h3>AI-Powered Analysis</h3>
-                    <p>Advanced machine learning algorithms analyze threats in real-time, providing actionable intelligence with 99.7% accuracy.</p>
-                </div>
-                <div class="feature-card" onclick="showFeatureDetails('threat-detection')">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Threat Detection</h3>
-                    <p>Multi-layered detection systems identify emerging threats across digital platforms with sub-second response times.</p>
-                </div>
-                <div class="feature-card" onclick="showFeatureDetails('quantum-security')">
-                    <div class="feature-icon">🔒</div>
-                    <h3>Quantum Security</h3>
-                    <p>Next-gen encryption and quantum-resistant security protocols protecting against future cyber threats.</p>
-                </div>
-                <div class="feature-card" onclick="showFeatureDetails('neural-network')">
-                    <div class="feature-icon">🧠</div>
-                    <h3>Neural Networks</h3>
-                    <p>Deep learning neural networks continuously evolve to counter sophisticated attack patterns and social engineering.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="dashboard-section" id="dashboard">
-            <div class="container">
-                <div class="dashboard-header">
-                    <h2>🔴 Live Operations Center</h2>
-                    <div class="status-indicators">
-                        <div class="status-indicator">
-                            <span class="status-dot active"></span>
-                            <span>SYSTEMS ONLINE</span>
-                        </div>
-                        <div class="status-indicator">
-                            <span class="status-dot warning"></span>
-                            <span>MONITORING</span>
-                        </div>
-                        <div class="status-indicator">
-                            <span class="status-dot danger"></span>
-                            <span>ALERTS: 3</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="metrics-grid">
-                    <div class="metric-card" onclick="updateMetric(this)">
-                        <div class="metric-number" id="threats-detected">1,247</div>
-                        <div class="metric-label">Threats Detected</div>
-                        <div class="metric-change positive">+12.5% ↑</div>
-                    </div>
-                    <div class="metric-card" onclick="updateMetric(this)">
-                        <div class="metric-number" id="response-time">0.03s</div>
-                        <div class="metric-label">Avg Response Time</div>
-                        <div class="metric-change positive">-8.2% ↓</div>
-                    </div>
-                    <div class="metric-card" onclick="updateMetric(this)">
-                        <div class="metric-number" id="accuracy-rate">99.7%</div>
-                        <div class="metric-label">Accuracy Rate</div>
-                        <div class="metric-change positive">+0.3% ↑</div>
-                    </div>
-                    <div class="metric-card" onclick="updateMetric(this)">
-                        <div class="metric-number" id="active-agents">15,847</div>
-                        <div class="metric-label">Active Agents</div>
-                        <div class="metric-change positive">+234 ↑</div>
-                    </div>
-                </div>
-
-                <div class="control-panel">
-                    <button class="control-btn" onclick="toggleSystem('surveillance')">🔍 Surveillance</button>
-                    <button class="control-btn" onclick="toggleSystem('analysis')">📊 Analysis</button>
-                    <button class="control-btn" onclick="toggleSystem('defense')">🛡️ Defense</button>
-                    <button class="control-btn" onclick="toggleSystem('alerts')">🚨 Alerts</button>
-                    <button class="control-btn" onclick="runDiagnostics()">🔧 Diagnostics</button>
-                    <button class="control-btn" onclick="openModal('reports')">📋 Reports</button>
-                </div>
-
-                <div class="progress-container">
-                    <div class="progress-label">
-                        <span>System Performance</span>
-                        <span id="system-performance">94%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="performance-bar" style="width: 94%"></div>
-                    </div>
-                </div>
-
-                <div class="progress-container">
-                    <div class="progress-label">
-                        <span>Threat Analysis</span>
-                        <span id="threat-analysis">87%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="threat-bar" style="width: 87%"></div>
-                    </div>
-                </div>
-
-                <div class="progress-container">
-                    <div class="progress-label">
-                        <span>Network Security</span>
-                        <span id="network-security">96%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="security-bar" style="width: 96%"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Intel Hub. Advanced Intelligence Operations • Quantum-Level Security</p>
-            <div class="social-links">
-                <a href="https://x.com/hubofintel" class="social-link" target="_blank">𝕏</a>
-                <a href="mailto:ops@intelhub.com" class="social-link">📧</a>
-                <a href="#" class="social-link" onclick="openModal('contact')">📞</a>
-                <a href="#" class="social-link" onclick="openModal('about')">ℹ️</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Modal System -->
-    <div id="reports-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">📋 Intelligence Reports</h3>
-                <button class="close-modal" onclick="closeModal('reports-modal')">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="progress-container">
-                    <div class="progress-label">
-                        <span>Generating Report...</span>
-                        <span id="report-progress">0%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="report-bar" style="width: 0%"></div>
-                    </div>
-                </div>
-                <p>Latest intelligence reports and threat assessments are being compiled. This includes:</p>
-                <ul style="margin: 1rem 0; padding-left: 2rem;">
-                    <li>Global threat landscape analysis</li>
-                    <li>Cyber attack pattern recognition</li>
-                    <li>Social media intelligence gathering</li>
-                    <li>Geopolitical risk assessment</li>
-                </ul>
-                <button class="cta-button" onclick="generateReport()">🔄 Generate New Report</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="terminal-modal" class="modal">
-        <div class="modal-content" style="max-width: 700px;">
-            <div class="modal-header">
-                <h3 class="modal-title">💻 Intel Terminal</h3>
-                <button class="close-modal" onclick="closeModal('terminal-modal')">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="terminal" id="terminal-output">
-                    <div class="terminal-line"><span class="terminal-prompt">intel@hub:~$</span> System initialized...</div>
-                    <div class="terminal-line">Connecting to secure networks...</div>
-                    <div class="terminal-line">✓ Quantum encryption active</div>
-                    <div class="terminal-line">✓ Neural networks online</div>
-                    <div class="terminal-line">✓ Threat detection systems operational</div>
-                    <div class="terminal-line"><span class="terminal-prompt">intel@hub:~$</span> Ready for commands</div>
-                </div>
-                <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-                    <button class="control-btn" onclick="runTerminalCommand('scan')">🔍 Scan</button>
-                    <button class="control-btn" onclick="runTerminalCommand('analyze')">📊 Analyze</button>
-                    <button class="control-btn" onclick="runTerminalCommand('status')">📡 Status</button>
-                    <button class="control-btn" onclick="runTerminalCommand('clear')">🗑️ Clear</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="contact-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">📞 Secure Contact</h3>
-                <button class="close-modal" onclick="closeModal('contact-modal')">&times;</button>
-            </div>
-            <div class="modal-body">
-                <p>For classified communications and urgent intelligence matters:</p>
-                <div style="margin: 1rem 0;">
-                    <strong>Encrypted Channels:</strong><br>
-                    📧 ops@intelhub.com<br>
-                    🔐 PGP: 4A8B-9C7D-2E1F-6G3H<br>
-                    📱 Signal: +1-555-INTEL-1<br>
-                    🌐 Secure Portal: portal.intelhub.com
-                </div>
-                <div class="status-indicator" style="justify-content: center;">
-                    <span class="status-dot active"></span>
-                    <span>Secure channels active</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="about-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">ℹ️ About Intel Hub</h3>
-                <button class="close-modal" onclick="closeModal('about-modal')">&times;</button>
-            </div>
-            <div class="modal-body">
-                <p>Intel Hub represents the next evolution in intelligence gathering and threat analysis. Our platform combines:</p>
-                <ul style="margin: 1rem 0; padding-left: 2rem;">
-                    <li>Quantum-enhanced AI algorithms</li>
-                    <li>Real-time global monitoring systems</li>
-                    <li>Advanced pattern recognition</li>
-                    <li>Secure multi-platform integration</li>
-                </ul>
-                <p>Trusted by defense agencies and security professionals worldwide.</p>
-                <div class="metrics-grid" style="margin-top: 1rem;">
-                    <div class="metric-card">
-                        <div class="metric-number">99.7%</div>
-                        <div class="metric-label">Accuracy</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-number">24/7</div>
-                        <div class="metric-label">Monitoring</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Initialize particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (Math.random() * 20 + 10) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Smooth scrolling
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (section) {
-                section.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            const navMenu = document.getElementById('nav-menu');
-            navMenu.classList.toggle('active');
-        }
-
-        // Modal system
-        function openModal(modalType) {
-            const modal = document.getElementById(modalType + '-modal');
-            if (modal) {
-                modal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            }
-        }
-
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        // Close modal when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target.classList.contains('modal')) {
-                e.target.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        });
-
-        // System controls
-        function toggleSystem(systemType) {
-            const btn = event.target;
-            btn.classList.toggle('active');
-            
-            // Add terminal output for system toggles
-            const terminalOutput = document.getElementById('terminal-output');
-            if (terminalOutput) {
-                const line = document.createElement('div');
-                line.className = 'terminal-line';
-                line.innerHTML = `<span class="terminal-prompt">intel@hub:~$</span> ${systemType.toUpperCase()} system ${btn.classList.contains('active') ? 'ACTIVATED' : 'DEACTIVATED'}`;
-                terminalOutput.appendChild(line);
-                terminalOutput.scrollTop = terminalOutput.scrollHeight;
-            }
-        }
-
-        // Update metrics with animation
-        function updateMetric(card) {
-            const numberElement = card.querySelector('.metric-number');
-            const currentValue = numberElement.textContent;
-            
-            // Add loading animation
-            numberElement.innerHTML = '<div class="loading"></div>';
-            
-            setTimeout(() => {
-                // Generate new random value based on metric type
-                let newValue;
-                if (currentValue.includes('%')) {
-                    newValue = (Math.random() * 100).toFixed(1) + '%';
-                } else if (currentValue.includes('s')) {
-                    newValue = (Math.random() * 0.1).toFixed(3) + 's';
-                } else if (currentValue.includes(',')) {
-                    newValue = (Math.random() * 50000 + 1000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-                } else {
-                    newValue = (Math.random() * 20000 + 10000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-                }
-                
-                numberElement.textContent = newValue;
-                card.style.transform = 'scale(1.1)';
-                setTimeout(() => {
-                    card.style.transform = 'scale(1)';
-                }, 200);
-            }, 1000);
-        }
-
-        // Terminal commands
-        function runTerminalCommand(command) {
-            const terminalOutput = document.getElementById('terminal-output');
-            const commands = {
-                'scan': [
-                    'Initiating network scan...',
-                    'Scanning 192.168.1.0/24...',
-                    'Found 127 active devices',
-                    '✓ No threats detected',
-                    'Scan completed in 2.3s'
-                ],
-                'analyze': [
-                    'Loading threat analysis module...',
-                    'Processing 1,247 data points...',
-                    'AI algorithms analyzing patterns...',
-                    'Threat level: MODERATE',
-                    'Confidence: 94.7%'
-                ],
-                'status': [
-                    'System Status Report:',
-                    '• CPU Usage: 23%',
-                    '• Memory: 67% (8.2GB/12GB)',
-                    '• Network: 1.2Gbps',
-                    '• Uptime: 47 days, 12 hours'
-                ],
-                'clear': []
-            };
-
-            if (command === 'clear') {
-                terminalOutput.innerHTML = '<div class="terminal-line"><span class="terminal-prompt">intel@hub:~$</span> Terminal cleared</div>';
-                return;
-            }
-
-            const line = document.createElement('div');
-            line.className = 'terminal-line';
-            line.innerHTML = `<span class="terminal-prompt">intel@hub:~$</span> ${command}`;
-            terminalOutput.appendChild(line);
-
-            if (commands[command]) {
-                commands[command].forEach((output, index) => {
-                    setTimeout(() => {
-                        const outputLine = document.createElement('div');
-                        outputLine.className = 'terminal-line';
-                        outputLine.textContent = output;
-                        terminalOutput.appendChild(outputLine);
-                        terminalOutput.scrollTop = terminalOutput.scrollHeight;
-                    }, (index + 1) * 500);
-                });
-            }
-        }
-
-        // Generate report with progress bar
-        function generateReport() {
-            const progressBar = document.getElementById('report-bar');
-            const progressText = document.getElementById('report-progress');
-            let progress = 0;
-            
-            const interval = setInterval(() => {
-                progress += Math.random() * 15;
-                if (progress >= 100) {
-                    progress = 100;
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        alert('🎉 Intelligence report generated successfully!\n\nReport ID: IR-2025-' + Math.floor(Math.random() * 10000) + '\nClassification: CONFIDENTIAL\nPages: 127\nThreats Identified: 23');
-                    }, 500);
-                }
-                
-                progressBar.style.width = progress + '%';
-                progressText.textContent = Math.floor(progress) + '%';
-            }, 200);
-        }
-
-        // Feature details
-        function showFeatureDetails(feature) {
-            const details = {
-                'ai-analysis': 'Advanced AI systems process millions of data points per second using quantum-enhanced algorithms.',
-                'threat-detection': 'Multi-layered detection identifies threats across 15+ platforms with 99.7% accuracy.',
-                'quantum-security': 'Quantum-resistant encryption protects against future computational threats.',
-                'neural-network': 'Deep learning networks adapt and evolve to counter sophisticated attack patterns.'
-            };
-            
-            alert('🔍 ' + feature.toUpperCase().replace('-', ' ') + '\n\n' + details[feature]);
-        }
-
-        // Diagnostics
-        function runDiagnostics() {
-            const btn = event.target;
-            const originalText = btn.textContent;
-            
-            btn.innerHTML = '🔄 Running...';
-            btn.disabled = true;
-            
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-                alert('🔧 System Diagnostics Complete\n\n✅ All systems operational\n✅ No errors detected\n✅ Performance optimal\n✅ Security protocols active\n\nNext scheduled maintenance: 72 hours');
-            }, 3000);
-        }
-
-        // Auto-update metrics
-        setInterval(() => {
-            const metrics = document.querySelectorAll('.metric-number');
-            metrics.forEach(metric => {
-                if (Math.random() < 0.1) { // 10% chance to update each metric
-                    const card = metric.closest('.metric-card');
-                    updateMetric(card);
-                }
-            });
-        }, 10000);
-
-        // Initialize everything
-        document.addEventListener('DOMContentLoaded', () => {
-            createParticles();
-            
-            // Add some initial terminal activity
-            setTimeout(() => {
-                const terminalOutput = document.getElementById('terminal-output');
-                if (terminalOutput) {
-                    const activityLine = document.createElement('div');
-                    activityLine.className = 'terminal-line';
-                    activityLine.textContent = '🔄 Background processes running...';
-                    terminalOutput.appendChild(activityLine);
-                }
-            }, 5000);
-        });
-    </script>
-</body>
-</html>" stroke-width="2" fill="none" opacity="0.5"/>
+                        <path d="M 190 200 Q 230 180 260 200" stroke="#ffffff" stroke-width="2" fill="none" opacity="0.5"/>
                     </svg>
                     Intel Hub
                 </a>
                 <nav>
-                    <ul id="nav-menu">
-                        <li><a href="#home" onclick="scrollToSection('home')">Home</a></li>
-                        <li><a href="#analysis" onclick="scrollToSection('analysis')">Analysis</a></li>
-                        <li><a href="#dashboard" onclick="scrollToSection('dashboard')">Dashboard</a></li>
-                        <li><a href="#reports" onclick="openModal('reports')">Reports</a></li>
-                        <li><a href="#terminal" onclick="openModal('terminal')">Terminal</a></li>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#analysis">Analysis</a></li>
+                        <li><a href="#reports">Reports</a></li>
+                        <li><a href="#live-feed">Live Feed</a></li>
                     </ul>
-                    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
                 </nav>
             </div>
         </div>
@@ -1300,8 +389,8 @@
     <main>
         <section class="hero" id="home">
             <div class="container">
-                <div class="hero-content">
-                    <svg width="120" height="120" viewBox="0 0 400 400" class="hero-logo">
+                <div class="logo-section">
+                    <svg width="80" height="80" viewBox="0 0 400 400" class="hero-logo">
                         <defs>
                             <filter id="hero-glow">
                                 <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
@@ -1311,12 +400,150 @@
                                 </feMerge>
                             </filter>
                         </defs>
+                        <!-- Satellite dishes -->
                         <rect x="120" y="120" width="60" height="60" rx="8" fill="#00d4ff" transform="rotate(-15 150 150)" filter="url(#hero-glow)"/>
                         <rect x="200" y="80" width="80" height="80" rx="10" fill="#ffffff" transform="rotate(15 240 120)" filter="url(#hero-glow)"/>
                         <rect x="80" y="200" width="50" height="50" rx="6" fill="#00d4ff" transform="rotate(30 105 225)" filter="url(#hero-glow)"/>
                         <rect x="240" y="220" width="70" height="70" rx="8" fill="#ffffff" transform="rotate(-20 275 255)" filter="url(#hero-glow)"/>
+                        
+                        <!-- Signal waves -->
                         <path d="M 180 140 Q 220 120 250 140" stroke="#00d4ff" stroke-width="4" fill="none" opacity="0.8"/>
                         <path d="M 170 160 Q 210 140 240 160" stroke="#00d4ff" stroke-width="3" fill="none" opacity="0.6"/>
                         <path d="M 160 180 Q 200 160 230 180" stroke="#00d4ff" stroke-width="3" fill="none" opacity="0.4"/>
+                        
+                        <!-- Additional signal waves -->
                         <path d="M 140 120 Q 180 100 210 120" stroke="#ffffff" stroke-width="3" fill="none" opacity="0.6"/>
-                        <path d="M 190 200 Q 230 180 260 200" stroke="#ffffff
+                        <path d="M 190 200 Q 230 180 260 200" stroke="#ffffff" stroke-width="3" fill="none" opacity="0.5"/>
+                    </svg>
+                </div>
+                <h1>Intel Hub</h1>
+                <p>Elite intelligence analysis • Real-time threat assessment • Information warfare defense</p>
+                <a href="#live-feed" class="cta-button">View Live Intel Feed</a>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Precision Intelligence</h3>
+                    <p>Advanced threat detection and analysis using cutting-edge methodologies and verified sources.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Rapid Response</h3>
+                    <p>Lightning-fast information processing with real-time updates on emerging threats and developments.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure Operations</h3>
+                    <p>Military-grade information security protocols protecting against disinformation and data manipulation.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="twitter-section" id="live-feed">
+            <div class="container">
+                <h2>🔴 Live Intelligence Feed</h2>
+                <div class="twitter-handle">@hubofintel</div>
+                <p>Real-time intel updates, threat assessments, and breaking analysis</p>
+                <a href="https://x.com/hubofintel" class="cta-button" target="_blank">Follow on 𝕏</a>
+                
+                <div class="live-feed-container">
+                    <div class="feed-header">
+                        <h3>Latest Intel Updates</h3>
+                        <div class="status-indicator">
+                            <span class="status-dot"></span>
+                            LIVE
+                        </div>
+                    </div>
+                    <div class="x-embed">
+                        <a class="twitter-timeline" 
+                           href="https://twitter.com/hubofintel?ref_src=twsrc%5Etfw"
+                           data-theme="dark"
+                           data-chrome="noheader nofooter noborders transparent"
+                           data-height="600"
+                           data-width="100%"
+                           data-tweet-limit="5">
+                           Tweets by hubofintel
+                        </a>
+                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Active Monitoring</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Accuracy Rate</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2.5K</div>
+                    <div class="stat-label">Intel Reports</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15K+</div>
+                    <div class="stat-label">Active Analysts</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Intel Hub. Elite intelligence operations and threat assessment.</p>
+            <div class="social-links">
+                <a href="https://x.com/hubofintel" class="social-link" target="_blank">𝕏</a>
+                <a href="mailto:intel@hubofintel.com" class="social-link">📧</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add some interactive elements
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'pulse 2s ease-in-out';
+                }
+            });
+        });
+
+        statNumbers.forEach(stat => {
+            observer.observe(stat);
+        });
+
+        // Add CSS animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.1); }
+                100% { transform: scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
